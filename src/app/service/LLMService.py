@@ -1,15 +1,15 @@
 from dotenv import load_dotenv
 from typing import Optional
 from langchain_core.prompts import ChatPromptTemplate,MessagesPlaceholder
-from langchain_core.pydantic_v1 import BaseModel,Field
+from pydantic import BaseModel,Field
 from langchain_openai import ChatOpenAI
 from langchain_mistralai import ChatMistralAI
-from scehma.Expense import Expense
+from app.schema.Expense import Expense
 import os
 class LLMService:
     def __init__(self):
         load_dotenv()
-        self.prompt=ChatPromptTemplate.fromMessages(
+        self.prompt=ChatPromptTemplate.from_messages(
             [
 
 
@@ -22,12 +22,12 @@ class LLMService:
 
                 ),
 
-                ('human',{text})
+                ('human',"{text}"),
 
             ]
         )
 
-        self.apiKey=os.getenv('OPENAI_API_KEY')
+        self.apiKey='7rV14iOI0cimxkgIYARNy6yMnk47w9KM'
         self.llm=ChatMistralAI(api_key=self.apiKey,model="mistral-large-latest")
         self.runnable=self.prompt |self.llm.with_structured_output(schema= Expense)
 

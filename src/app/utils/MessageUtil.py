@@ -4,4 +4,4 @@ class MessageUtil:
         words_to_search=['spent','card','bank']
         pattern=r'\b(?:'+'|'.join(re.escape(word) for word in words_to_search)+ r')\b'
 
-        return bool(re.search(pattern=pattern,message=message,flags=re.IGNORECASE))
+        return bool(re.search(pattern,message,re.IGNORECASE))
