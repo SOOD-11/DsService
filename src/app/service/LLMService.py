@@ -27,7 +27,7 @@ class LLMService:
             ]
         )
 
-        self.apiKey='7rV14iOI0cimxkgIYARNy6yMnk47w9KM'
+        self.apiKey=os.getenv("OPEN_AI_API_KEY")
         self.llm=ChatMistralAI(api_key=self.apiKey,model="mistral-large-latest")
         self.runnable=self.prompt |self.llm.with_structured_output(schema= Expense)
 

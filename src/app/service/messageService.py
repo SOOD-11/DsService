@@ -1,3 +1,4 @@
+from app.schema.Expense import Expense
 from app.utils.MessageUtil import MessageUtil
 from app.service.LLMService import LLMService
 class MessageService:
@@ -13,4 +14,8 @@ class MessageService:
               return self.llmService.runLLM(message=message)
         else :
 
-            return None
+            return Expense(
+                amount=None,
+                merchant=None,
+                currency=None
+            )
